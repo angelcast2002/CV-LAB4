@@ -17,7 +17,7 @@ OVERLAP = PATCH_SIZE // 2
 NUM_PATCHES = 200_000
 SPLIT = (0.8, 0.1, 0.1)
 MODEL_FILENAME = 'unet_anisotropic.h5'
-FULL_IMAGE_PATH = 'train/309004.jpg'
+FULL_IMAGE_PATH = 'train/90076.jpg'
 DO_TRAIN = False
 
 
@@ -182,7 +182,7 @@ if DO_TRAIN:
     X_test,  Y_test  = X_test.astype(np.float32),  Y_test.astype(np.float32)
     model = build_unet((PATCH_SIZE, PATCH_SIZE, 1))
     model.compile(optimizer='adam', loss='mse', metrics=['mae'])
-    model.fit(X_train, Y_train, epochs=2, batch_size=64,
+    model.fit(X_train, Y_train, epochs=5, batch_size=64,
               validation_data=(X_val, Y_val))
     loss, mae = model.evaluate(X_test, Y_test)
     print(f"Test MAE: {mae:.4f}")
